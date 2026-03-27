@@ -15,17 +15,22 @@ import {
   NewInvoiceAlert,
   InvoiceLoaderModal,
   InvoiceExportModal,
+  DuplicateInvoiceModal,
 } from "@/app/components";
 
 // Contexts
+import { useFormContext } from "react-hook-form";
 import { useInvoiceContext } from "@/contexts/InvoiceContext";
 import { useTranslationContext } from "@/contexts/TranslationContext";
 
 // Icons
-import { FileInput, FolderUp, Import, Plus, RotateCcw } from "lucide-react";
+import { FileInput, FolderUp, Import, Plus, RotateCcw, Copy } from "lucide-react";
 
 const InvoiceActions = () => {
+  const { watch } = useFormContext();
   const { invoicePdfLoading, newInvoice } = useInvoiceContext();
+  
+  const isInvoiceLoaded = !!watch("sender.name") || !!watch("details.invoiceNumber");
 
   const { _t } = useTranslationContext();
   return (
@@ -61,6 +66,20 @@ const InvoiceActions = () => {
                 {_t("actions.exportInvoice")}
               </BaseButton>
             </InvoiceExportModal>
+
+            {/* Duplicate invoice button */}
+            {isInvoiceLoaded && (
+              <DuplicateInvoiceModal>
+                <BaseButton
+                  variant="outline"
+                  tooltipLabel="Duplicate this invoice"
+                  disabled={invoicePdfLoading}
+                >
+                  <Copy />
+                  Duplicate
+                </BaseButton>
+              </DuplicateInvoiceModal>
+            )}
           </div>
 
           <div className="flex flex-wrap gap-3">

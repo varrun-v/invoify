@@ -62,6 +62,7 @@ import SendPdfToEmailModal from "./modals/email/SendPdfToEmailModal";
 // Import/Export
 import InvoiceLoaderModal from "./modals/invoice/InvoiceLoaderModal";
 import InvoiceExportModal from "./modals/invoice/InvoiceExportModal";
+import DuplicateInvoiceModal from "./modals/invoice/DuplicateInvoiceModal";
 
 // Custom Selectors
 import SavedInvoicesList from "./modals/invoice/components/SavedInvoicesList";
@@ -134,6 +135,7 @@ export {
     SendPdfToEmailModal,
     InvoiceLoaderModal,
     InvoiceExportModal,
+    DuplicateInvoiceModal,
     ImportJsonButton,
     SignatureModal,
     DrawSignature,
